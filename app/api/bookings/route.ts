@@ -19,14 +19,14 @@ const JWT_SECRET = new TextEncoder().encode(
 );
 const COOKIE_NAME = "session";
 
-// Helper to get authenticated user payload
+// // Helper to get authenticated user payload
 async function getAuthPayload(): Promise<{
   userId: string;
   username: string;
   isAdmin: boolean;
 } | null> {
-  const tokenCookie = cookies();
-  tokenCookie.get(COOKIE_NAME);
+  const cookieStore = await cookies();
+  const tokenCookie = cookieStore.get(COOKIE_NAME);
   if (!tokenCookie) return null;
   try {
     const { payload } = await jwtVerify(tokenCookie.value, JWT_SECRET);
