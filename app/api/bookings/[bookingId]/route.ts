@@ -14,8 +14,11 @@ const COOKIE_NAME = "session";
 
 // Helper to get authenticated user ID (can be shared)
 async function getAuthenticatedUserId(): Promise<string | null> {
-  const tokenCookie = cookies().get(COOKIE_NAME);
+  const cookieStore = await cookies();
+  const tokenCookie = cookieStore.get(COOKIE_NAME);
+
   if (!tokenCookie) return null;
+
   try {
     const { payload } = await jwtVerify(tokenCookie.value, JWT_SECRET);
     return typeof payload.userId === "string" ? payload.userId : null;

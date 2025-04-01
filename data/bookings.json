@@ -10,5 +10,25 @@
     ],
     "bookingTime": "2025-04-01T12:51:05.313Z",
     "paymentStatus": "paid"
+  },
+  {
+    "id": "d01b4601-d460-4a34-be60-a3a52ea7cbf6",
+    "eventId": "d6aa8bd6-b887-4cdd-8ac5-e176d9f33f1f",
+    "userId": "admin-001",
+    "seats": [
+      "R20C1",
+      "R20C2",
+      "R21C1",
+      "R21C2",
+      "R22C1",
+      "R22C2",
+      "R23C1",
+      "R23C2",
+      "R2C1",
+      "R4C2",
+      "R5C1"
+    ],
+    "bookingTime": "2025-04-01T15:08:23.910Z",
+    "paymentStatus": "pay_at_event"
   }
 ]

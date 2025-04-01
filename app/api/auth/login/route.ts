@@ -41,8 +41,9 @@ export async function POST(request: Request) {
         .setExpirationTime("1h") // Set session duration (e.g., 1 hour)
         .sign(JWT_SECRET);
 
-      // Set cookie
-      cookies().set(COOKIE_NAME, token, {
+      // Set cookie - Add await here
+      const cookieStore = await cookies();
+      cookieStore.set(COOKIE_NAME, token, {
         httpOnly: true, // Crucial: prevents client-side JS access
         secure: process.env.NODE_ENV === "production", // Use secure cookies in production
         path: "/",

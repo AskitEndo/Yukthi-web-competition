@@ -25,7 +25,8 @@ async function getAuthPayload(): Promise<{
   username: string;
   isAdmin: boolean;
 } | null> {
-  const tokenCookie = cookies().get(COOKIE_NAME);
+  const tokenCookie = cookies();
+  tokenCookie.get(COOKIE_NAME);
   if (!tokenCookie) return null;
   try {
     const { payload } = await jwtVerify(tokenCookie.value, JWT_SECRET);

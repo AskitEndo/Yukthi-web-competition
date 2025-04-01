@@ -11,7 +11,8 @@ const JWT_SECRET = new TextEncoder().encode(
 const COOKIE_NAME = "session";
 
 export async function GET() {
-  const tokenCookie = cookies().get(COOKIE_NAME);
+  const cookieStore = await cookies();
+  const tokenCookie = cookieStore.get(COOKIE_NAME);
 
   if (!tokenCookie) {
     return NextResponse.json(
@@ -21,30 +22,24 @@ export async function GET() {
   }
 
   try {
-    // Verify and decode the JWT
     const { payload } = await jwtVerify(tokenCookie.value, JWT_SECRET);
-
-    // Re-fetch user from database to ensure data is fresh
-    // This prevents using stale data if user details change during the session
     const user = await findUserById(payload.userId as string);
 
     if (!user) {
-      // User existed in token but not in database anymore - log them out
-      cookies().delete(COOKIE_NAME);
+      const cookieStore = await cookies();
+      cookieStore.delete(COOKIE_NAME);
       return NextResponse.json(
         { user: null, message: "User not found." },
         { status: 401 }
       );
     }
 
-    // Don't send password back to client
     const { password: _, ...userWithoutPassword } = user;
-
     return NextResponse.json({ user: userWithoutPassword });
   } catch (error) {
     console.error("Auth 'me' API error:", error);
-    // Clear potentially invalid cookie
-    cookies().delete(COOKIE_NAME);
+    const cookieStore = await cookies();
+    cookieStore.delete(COOKIE_NAME);
     return NextResponse.json(
       { user: null, message: "Invalid session token." },
       { status: 401 }

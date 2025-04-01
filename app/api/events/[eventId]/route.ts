@@ -13,7 +13,8 @@ const COOKIE_NAME = "session";
 
 // Helper function to verify JWT (can be extracted to a shared util)
 async function verifyAuthentication(request: Request): Promise<boolean> {
-  const tokenCookie = cookies().get(COOKIE_NAME);
+  const cookieStore = await cookies();
+  const tokenCookie = cookieStore.get(COOKIE_NAME);
   if (!tokenCookie) return false;
   try {
     await jwtVerify(tokenCookie.value, JWT_SECRET);

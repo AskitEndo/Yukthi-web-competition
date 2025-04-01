@@ -45,8 +45,8 @@
           "id": "R2C1",
           "row": 2,
           "col": 1,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "admin-001"
         },
         {
           "id": "R2C2",
@@ -84,8 +84,8 @@
           "id": "R4C2",
           "row": 4,
           "col": 2,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "admin-001"
         }
       ],
       [
@@ -93,8 +93,8 @@
           "id": "R5C1",
           "row": 5,
           "col": 1,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "admin-001"
         },
         {
           "id": "R5C2",
@@ -333,15 +333,15 @@
           "id": "R20C1",
           "row": 20,
           "col": 1,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "admin-001"
         },
         {
           "id": "R20C2",
           "row": 20,
           "col": 2,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "admin-001"
         }
       ],
       [
@@ -349,15 +349,15 @@
           "id": "R21C1",
           "row": 21,
           "col": 1,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "admin-001"
         },
         {
           "id": "R21C2",
           "row": 21,
           "col": 2,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "admin-001"
         }
       ],
       [
@@ -365,15 +365,15 @@
           "id": "R22C1",
           "row": 22,
           "col": 1,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "admin-001"
         },
         {
           "id": "R22C2",
           "row": 22,
           "col": 2,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "admin-001"
         }
       ],
       [
@@ -381,15 +381,15 @@
           "id": "R23C1",
           "row": 23,
           "col": 1,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "admin-001"
         },
         {
           "id": "R23C2",
           "row": 23,
           "col": 2,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "admin-001"
         }
       ]
     ]

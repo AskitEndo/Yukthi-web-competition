@@ -6,8 +6,10 @@ const COOKIE_NAME = "session";
 
 export async function POST() {
   try {
-    // Clear the session cookie
-    cookies().delete(COOKIE_NAME);
+    // Clear the session cookie - Add await here
+    const cookieStore = await cookies();
+    cookieStore.delete(COOKIE_NAME);
+
     return NextResponse.json({
       success: true,
       message: "Logged out successfully.",
@@ -20,6 +22,3 @@ export async function POST() {
     );
   }
 }
-
-// Optional: Could also use GET if preferred for logout link/button simplicity
-// export async function GET() { ... same logic ... }
