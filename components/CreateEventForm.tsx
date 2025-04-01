@@ -3,6 +3,16 @@
 
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import {
+  Music,
+  Calendar,
+  MapPin,
+  Image,
+  Grid,
+  Sparkles,
+  AlertTriangle,
+  CheckCircle,
+} from "lucide-react";
 
 export default function CreateEventForm() {
   const [formData, setFormData] = useState({
@@ -90,211 +100,305 @@ export default function CreateEventForm() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-5 bg-white p-8 rounded-lg shadow-md">
-      <h2 className="text-xl font-bold mb-6 text-gray-800">Create New Event</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {error && (
-          <div className="p-3 bg-red-100 text-red-700 border border-red-400 rounded">
-            {error}
-          </div>
-        )}
-        {success && (
-          <div className="p-3 bg-green-100 text-green-700 border border-green-400 rounded">
-            {success}
-          </div>
-        )}
-
-        {/* Basic Input Fields */}
-        <div>
-          <label
-            htmlFor="name"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Event Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            required
-            value={formData.name}
-            onChange={handleChange}
-            disabled={isLoading}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="description"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Description
-          </label>
-          <textarea
-            name="description"
-            id="description"
-            rows={4}
-            required
-            value={formData.description}
-            onChange={handleChange}
-            disabled={isLoading}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-          ></textarea>
-        </div>
-
-        <div>
-          <label
-            htmlFor="date"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Date and Time
-          </label>
-          <input
-            type="datetime-local"
-            name="date"
-            id="date"
-            required
-            value={formData.date}
-            onChange={handleChange}
-            disabled={isLoading}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="location"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Location (Venue Name/Address)
-          </label>
-          <input
-            type="text"
-            name="location"
-            id="location"
-            required
-            value={formData.location}
-            onChange={handleChange}
-            disabled={isLoading}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="locationUrl"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Location URL (Optional Google Maps etc.)
-          </label>
-          <input
-            type="url"
-            name="locationUrl"
-            id="locationUrl"
-            value={formData.locationUrl}
-            onChange={handleChange}
-            disabled={isLoading}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="posterImageUrl"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Poster Image URL (e.g., /images/posters/event.png)
-          </label>
-          <input
-            type="text"
-            name="posterImageUrl"
-            id="posterImageUrl"
-            required
-            value={formData.posterImageUrl}
-            onChange={handleChange}
-            disabled={isLoading}
-            placeholder="/images/posters/your-image.png"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="bannerImageUrl"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Banner Image URL (Optional)
-          </label>
-          <input
-            type="text"
-            name="bannerImageUrl"
-            id="bannerImageUrl"
-            value={formData.bannerImageUrl}
-            onChange={handleChange}
-            disabled={isLoading}
-            placeholder="/images/banners/your-banner.png"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-          />
-        </div>
-
-        {/* Seating Layout */}
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label
-              htmlFor="rows"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Number of Rows
-            </label>
-            <input
-              type="number"
-              name="rows"
-              id="rows"
-              required
-              min="1"
-              max="50"
-              value={formData.rows}
-              onChange={handleChange}
-              disabled={isLoading}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="cols"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Number of Columns
-            </label>
-            <input
-              type="number"
-              name="cols"
-              id="cols"
-              required
-              min="1"
-              max="50"
-              value={formData.cols}
-              onChange={handleChange}
-              disabled={isLoading}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-            />
+    <div className="max-w-4xl mx-auto mt-8">
+      {/* Comic book style form container */}
+      <div className="relative bg-white border-4 border-black rounded-xl shadow-[8px_8px_0px_0px_rgba(0,0,0)] overflow-hidden">
+        {/* Header strip */}
+        <div className="bg-yellow-400 py-3 px-6 border-b-4 border-black relative overflow-hidden">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)`,
+              backgroundSize: "6px 6px",
+            }}
+          ></div>
+          <div className="relative flex items-center justify-between">
+            <h2 className="text-2xl font-extrabold text-black uppercase tracking-wider font-boldonse flex items-center">
+              <Music strokeWidth={3} className="mr-2 h-6 w-6" />
+              CREATE NEW EVENT
+            </h2>
+            <div className="h-8 w-8 bg-red-500 border-[3px] border-black rounded-full"></div>
           </div>
         </div>
 
-        {/* Submit Button */}
-        <div>
-          <button
-            type="submit"
-            disabled={isLoading}
-            className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${
-              isLoading ? "bg-gray-400" : "bg-green-600 hover:bg-green-700"
-            } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-150`}
-          >
-            {isLoading ? "Creating..." : "Create Event"}
-          </button>
+        {/* Form content */}
+        <div className="p-6 relative">
+          <div
+            className="absolute inset-0 opacity-5"
+            style={{
+              backgroundImage: `radial-gradient(circle, rgba(0,0,0,0.3) 1px, transparent 1px)`,
+              backgroundSize: "10px 10px",
+            }}
+          ></div>
+
+          {/* Alert messages */}
+          {error && (
+            <div className="mb-6 relative">
+              <div className="bg-red-100 border-[3px] border-black rounded-lg p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0)]">
+                <div className="flex items-center">
+                  <AlertTriangle
+                    className="h-5 w-5 text-red-600 mr-2"
+                    strokeWidth={3}
+                  />
+                  <p className="text-red-700 font-bold font-space">{error}</p>
+                </div>
+              </div>
+              <div className="absolute -top-2 -right-2 h-4 w-4 bg-red-500 border-2 border-black rounded-full"></div>
+            </div>
+          )}
+
+          {success && (
+            <div className="mb-6 relative">
+              <div className="bg-green-100 border-[3px] border-black rounded-lg p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0)]">
+                <div className="flex items-center">
+                  <CheckCircle
+                    className="h-5 w-5 text-green-600 mr-2"
+                    strokeWidth={3}
+                  />
+                  <p className="text-green-700 font-bold font-space">
+                    {success}
+                  </p>
+                </div>
+              </div>
+              <div className="absolute -top-2 -right-2 h-4 w-4 bg-green-500 border-2 border-black rounded-full"></div>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
+            {/* Basic Input Fields */}
+            <div className="relative group">
+              <label
+                htmlFor="name"
+                className="block text-sm font-bold text-black mb-1 uppercase font-boldonse"
+              >
+                Event Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                required
+                value={formData.name}
+                onChange={handleChange}
+                disabled={isLoading}
+                className="w-full px-4 py-2 bg-white border-[3px] border-black rounded-lg focus:outline-none text-black font-bold placeholder-gray-500 shadow-[2px_2px_0px_0px_rgba(0,0,0)] focus:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition-all font-space"
+              />
+              <div className="absolute -top-1 -right-1 h-3 w-3 bg-blue-500 border-2 border-black rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity"></div>
+            </div>
+
+            <div className="relative group">
+              <label
+                htmlFor="description"
+                className="block text-sm font-bold text-black mb-1 uppercase font-boldonse"
+              >
+                Description <span className="text-red-500">*</span>
+              </label>
+              <textarea
+                name="description"
+                id="description"
+                rows={4}
+                required
+                value={formData.description}
+                onChange={handleChange}
+                disabled={isLoading}
+                className="w-full px-4 py-2 bg-white border-[3px] border-black rounded-lg focus:outline-none text-black font-bold placeholder-gray-500 shadow-[2px_2px_0px_0px_rgba(0,0,0)] focus:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition-all font-space"
+              ></textarea>
+              <div className="absolute -top-1 -right-1 h-3 w-3 bg-green-500 border-2 border-black rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity"></div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="relative group">
+                <label
+                  htmlFor="date"
+                  className="block text-sm font-bold text-black mb-1 uppercase font-boldonse flex items-center"
+                >
+                  <Calendar
+                    className="h-4 w-4 mr-1 inline-block"
+                    strokeWidth={3}
+                  />
+                  Date and Time <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="datetime-local"
+                  name="date"
+                  id="date"
+                  required
+                  value={formData.date}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                  className="w-full px-4 py-2 bg-white border-[3px] border-black rounded-lg focus:outline-none text-black font-bold placeholder-gray-500 shadow-[2px_2px_0px_0px_rgba(0,0,0)] focus:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition-all font-space"
+                />
+                <div className="absolute -top-1 -right-1 h-3 w-3 bg-yellow-400 border-2 border-black rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity"></div>
+              </div>
+
+              <div className="relative group">
+                <label
+                  htmlFor="location"
+                  className="block text-sm font-bold text-black mb-1 uppercase font-boldonse flex items-center"
+                >
+                  <MapPin
+                    className="h-4 w-4 mr-1 inline-block"
+                    strokeWidth={3}
+                  />
+                  Location <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="location"
+                  id="location"
+                  required
+                  value={formData.location}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                  className="w-full px-4 py-2 bg-white border-[3px] border-black rounded-lg focus:outline-none text-black font-bold placeholder-gray-500 shadow-[2px_2px_0px_0px_rgba(0,0,0)] focus:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition-all font-space"
+                />
+                <div className="absolute -top-1 -right-1 h-3 w-3 bg-blue-400 border-2 border-black rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity"></div>
+              </div>
+            </div>
+
+            <div className="relative group">
+              <label
+                htmlFor="locationUrl"
+                className="block text-sm font-bold text-black mb-1 uppercase font-boldonse"
+              >
+                Location URL (Optional)
+              </label>
+              <input
+                type="url"
+                name="locationUrl"
+                id="locationUrl"
+                value={formData.locationUrl}
+                onChange={handleChange}
+                disabled={isLoading}
+                className="w-full px-4 py-2 bg-white border-[3px] border-black rounded-lg focus:outline-none text-black font-bold placeholder-gray-500 shadow-[2px_2px_0px_0px_rgba(0,0,0)] focus:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition-all font-space"
+              />
+              <div className="absolute -top-1 -right-1 h-3 w-3 bg-red-400 border-2 border-black rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity"></div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="relative group">
+                <label
+                  htmlFor="posterImageUrl"
+                  className="block text-sm font-bold text-black mb-1 uppercase font-boldonse flex items-center"
+                >
+                  <Image
+                    className="h-4 w-4 mr-1 inline-block"
+                    strokeWidth={3}
+                  />
+                  Poster Image URL <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="posterImageUrl"
+                  id="posterImageUrl"
+                  required
+                  value={formData.posterImageUrl}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                  placeholder="/images/posters/your-image.png"
+                  className="w-full px-4 py-2 bg-white border-[3px] border-black rounded-lg focus:outline-none text-black font-bold placeholder-gray-500 shadow-[2px_2px_0px_0px_rgba(0,0,0)] focus:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition-all font-space"
+                />
+                <div className="absolute -top-1 -right-1 h-3 w-3 bg-green-400 border-2 border-black rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity"></div>
+              </div>
+
+              <div className="relative group">
+                <label
+                  htmlFor="bannerImageUrl"
+                  className="block text-sm font-bold text-black mb-1 uppercase font-boldonse"
+                >
+                  Banner Image URL (Optional)
+                </label>
+                <input
+                  type="text"
+                  name="bannerImageUrl"
+                  id="bannerImageUrl"
+                  value={formData.bannerImageUrl}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                  placeholder="/images/banners/your-banner.png"
+                  className="w-full px-4 py-2 bg-white border-[3px] border-black rounded-lg focus:outline-none text-black font-bold placeholder-gray-500 shadow-[2px_2px_0px_0px_rgba(0,0,0)] focus:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition-all font-space"
+                />
+                <div className="absolute -top-1 -right-1 h-3 w-3 bg-yellow-400 border-2 border-black rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity"></div>
+              </div>
+            </div>
+
+            {/* Seating Layout */}
+            <div className="mt-6 mb-2">
+              <div className="bg-blue-400 py-2 px-4 border-[3px] border-black rounded-lg relative mb-4 shadow-[2px_2px_0px_0px_rgba(0,0,0)]">
+                <h3 className="font-bold text-black font-boldonse flex items-center">
+                  <Grid className="h-4 w-4 mr-2" strokeWidth={3} />
+                  SEATING LAYOUT
+                </h3>
+                <div className="absolute -top-1 -right-1 h-3 w-3 bg-red-500 border-2 border-black rounded-full"></div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-5">
+                <div className="relative group">
+                  <label
+                    htmlFor="rows"
+                    className="block text-sm font-bold text-black mb-1 uppercase font-boldonse"
+                  >
+                    Number of Rows <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    name="rows"
+                    id="rows"
+                    required
+                    min="1"
+                    max="50"
+                    value={formData.rows}
+                    onChange={handleChange}
+                    disabled={isLoading}
+                    className="w-full px-4 py-2 bg-white border-[3px] border-black rounded-lg focus:outline-none text-black font-bold placeholder-gray-500 shadow-[2px_2px_0px_0px_rgba(0,0,0)] focus:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition-all font-space"
+                  />
+                  <div className="absolute -top-1 -right-1 h-3 w-3 bg-blue-500 border-2 border-black rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity"></div>
+                </div>
+
+                <div className="relative group">
+                  <label
+                    htmlFor="cols"
+                    className="block text-sm font-bold text-black mb-1 uppercase font-boldonse"
+                  >
+                    Number of Columns <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    name="cols"
+                    id="cols"
+                    required
+                    min="1"
+                    max="50"
+                    value={formData.cols}
+                    onChange={handleChange}
+                    disabled={isLoading}
+                    className="w-full px-4 py-2 bg-white border-[3px] border-black rounded-lg focus:outline-none text-black font-bold placeholder-gray-500 shadow-[2px_2px_0px_0px_rgba(0,0,0)] focus:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition-all font-space"
+                  />
+                  <div className="absolute -top-1 -right-1 h-3 w-3 bg-green-500 border-2 border-black rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <div className="mt-8 relative group">
+              <button
+                type="submit"
+                disabled={isLoading}
+                className={`w-full py-3 px-6 border-[3px] border-black rounded-lg font-extrabold text-white uppercase tracking-wide font-boldonse shadow-[4px_4px_0px_0px_rgba(0,0,0)] transform transition-all hover:translate-y-[-2px] hover:shadow-[4px_6px_0px_0px_rgba(0,0,0)] ${
+                  isLoading ? "bg-gray-400" : "bg-green-600 hover:bg-green-500"
+                } focus:outline-none`}
+              >
+                <div className="flex items-center justify-center">
+                  <Sparkles className="h-5 w-5 mr-2" strokeWidth={3} />
+                  {isLoading ? "CREATING..." : "CREATE EVENT!"}
+                </div>
+              </button>
+              <div className="absolute -top-1 -left-1 h-3 w-3 bg-yellow-400 border-2 border-black rounded-full"></div>
+              <div className="absolute -bottom-1 -right-1 h-3 w-3 bg-red-500 border-2 border-black rounded-full"></div>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

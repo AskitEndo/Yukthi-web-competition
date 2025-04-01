@@ -1,36 +1,55 @@
 // app/layout.tsx
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css"; // Tailwind styles
-import Navbar from "@/components/Navbar"; // Adjust import path if alias is different
-import Footer from "@/components/Footer"; // Adjust import path if alias is different
-import { AuthProvider } from "@/context/AuthContext"; // Import AuthProvider
+import { Metadata } from "next";
+import { Space_Grotesk } from "next/font/google";
+import "./globals.css";
+import { AuthProvider } from "@/context/AuthContext";
+import { LoadingProvider } from "@/context/LoadingContext";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { NavigationEvents } from "./navigation-events";
 
-const inter = Inter({ subsets: ["latin"] });
+// Define fonts
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-space-grotesk",
+});
+
+// Boldonse isn't available in next/font/google, so we'll import it through CSS
 
 export const metadata: Metadata = {
-  title: "SeeVent",
-  description: "See and you went to the event",
+  title: "SeeVent - Event Booking Platform",
+  description: "Book your tickets for exciting events happening around you.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} bg-gray-100 text-gray-900`}>
+    <html lang="en" className={`${spaceGrotesk.variable}`}>
+      <head>
+        {/* Import Boldonse font which isn't available via next/font */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Boldonse&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="min-h-screen flex flex-col bg-gray-50">
         <AuthProvider>
-          {" "}
-          {/* Wrap contents with AuthProvider */}
-          <div className="flex flex-col min-h-screen">
-            <Navbar /> {/* Navbar can now use useAuth */}
-            <main className="flex-grow container mx-auto px-4 py-8">
-              {children}
-            </main>
+          <LoadingProvider>
+            <NavigationEvents />
+            <Navbar />
+            <main className="flex-grow">{children}</main>
             <Footer />
-          </div>
+          </LoadingProvider>
         </AuthProvider>
       </body>
     </html>

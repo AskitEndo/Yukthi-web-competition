@@ -141,15 +141,15 @@
           "id": "R8C1",
           "row": 8,
           "col": 1,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "9e703ad5-0c44-443f-8035-81fc6428f3a7"
         },
         {
           "id": "R8C2",
           "row": 8,
           "col": 2,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "9e703ad5-0c44-443f-8035-81fc6428f3a7"
         }
       ],
       [
@@ -157,15 +157,15 @@
           "id": "R9C1",
           "row": 9,
           "col": 1,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "9e703ad5-0c44-443f-8035-81fc6428f3a7"
         },
         {
           "id": "R9C2",
           "row": 9,
           "col": 2,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "9e703ad5-0c44-443f-8035-81fc6428f3a7"
         }
       ],
       [
@@ -173,15 +173,15 @@
           "id": "R10C1",
           "row": 10,
           "col": 1,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "9e703ad5-0c44-443f-8035-81fc6428f3a7"
         },
         {
           "id": "R10C2",
           "row": 10,
           "col": 2,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "9e703ad5-0c44-443f-8035-81fc6428f3a7"
         }
       ],
       [
@@ -189,15 +189,15 @@
           "id": "R11C1",
           "row": 11,
           "col": 1,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "9e703ad5-0c44-443f-8035-81fc6428f3a7"
         },
         {
           "id": "R11C2",
           "row": 11,
           "col": 2,
-          "isBooked": false,
-          "userId": null
+          "isBooked": true,
+          "userId": "9e703ad5-0c44-443f-8035-81fc6428f3a7"
         }
       ],
       [

@@ -1,125 +1,261 @@
-import Link from "next/link";
-import { useState } from "react";
+"use client";
 
+import { useState } from "react";
+import Link from "next/link";
+import {
+  ArrowUpDown,
+  Check,
+  Clock,
+  CreditCard,
+  ExternalLink,
+  Eye,
+  Ticket,
+  User,
+} from "lucide-react";
+
+// Define proper interfaces
 interface Booking {
   id: string;
   eventId: string;
-  eventName: string;
+  eventName?: string;
   userId: string;
-  userName: string;
-  userEmail: string;
-  ticketCount: number;
-  createdAt: string;
-  status: "confirmed" | "cancelled" | "pending";
-  totalAmount: number;
+  userName?: string;
+  seats: string[];
+  bookingTime: string;
+  paymentStatus: string;
+  amount?: number;
 }
 
 interface BookingsListProps {
   bookings: Booking[];
-  title?: string;
-  showViewAll?: boolean;
-  viewAllLink?: string;
+  showEventInfo?: boolean;
 }
 
 export default function BookingsList({
   bookings,
-  title = "Recent Bookings",
-  showViewAll = false,
-  viewAllLink = "/admin/bookings",
+  showEventInfo = false,
 }: BookingsListProps) {
-  if (!bookings || bookings.length === 0) {
+  const [sortField, setSortField] = useState<string>("bookingTime");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
+
+  const toggleSort = (field: string) => {
+    if (sortField === field) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortField(field);
+      setSortOrder("asc");
+    }
+  };
+
+  // Safe sort function that handles missing properties
+  const sortedBookings = [...bookings].sort((a, b) => {
+    // Handle missing properties safely
+    const aValue = a[sortField as keyof Booking] || "";
+    const bValue = b[sortField as keyof Booking] || "";
+
+    // Basic sort for different types
+    if (typeof aValue === "string" && typeof bValue === "string") {
+      return sortOrder === "asc"
+        ? aValue.localeCompare(bValue)
+        : bValue.localeCompare(aValue);
+    } else {
+      // Handle other types or convert to string for comparison
+      const aString = String(aValue);
+      const bString = String(bValue);
+      return sortOrder === "asc"
+        ? aString.localeCompare(bString)
+        : bString.localeCompare(aString);
+    }
+  });
+
+  // Helper function to render payment status with appropriate styling
+  const renderPaymentStatus = (status: string) => {
+    let bgColor = "bg-yellow-400";
+    let textColor = "text-black";
+    let label = "Pending";
+
+    if (status === "paid") {
+      bgColor = "bg-green-400";
+      textColor = "text-black";
+      label = "Paid";
+    } else if (status === "pay_at_event") {
+      bgColor = "bg-blue-400";
+      textColor = "text-black";
+      label = "Pay at Event";
+    }
+
     return (
-      <div className="bg-white p-6 rounded-lg shadow text-center text-gray-500">
-        No bookings found.
+      <span
+        className={`${bgColor} ${textColor} px-2 py-1 rounded-lg text-xs font-bold border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0)] font-boldonse uppercase`}
+      >
+        <CreditCard className="h-3 w-3 inline-block mr-1" strokeWidth={3} />
+        {label}
+      </span>
+    );
+  };
+
+  // Helper to format date
+  const formatDate = (dateString: string) => {
+    try {
+      return new Date(dateString).toLocaleString();
+    } catch {
+      return "Invalid Date";
+    }
+  };
+
+  // Handle empty bookings
+  if (bookings.length === 0) {
+    return (
+      <div className="p-6 text-center">
+        <p className="text-gray-500 font-space">No bookings to display</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      {title && (
-        <div className="flex justify-between items-center p-4 border-b">
-          <h3 className="text-lg font-medium text-gray-700">{title}</h3>
-          {showViewAll && (
-            <Link
-              href={viewAllLink}
-              className="text-blue-600 hover:underline text-sm"
-            >
-              View all bookings
-            </Link>
-          )}
-        </div>
-      )}
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
-          <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Booking ID
+    <div className="overflow-x-auto">
+      <table className="w-full border-collapse">
+        <thead>
+          <tr className="bg-gray-100 border-b-4 border-black">
+            <th className="p-3 text-left">
+              <button
+                onClick={() => toggleSort("id")}
+                className="flex items-center font-boldonse text-sm uppercase"
+              >
+                Booking ID
+                <ArrowUpDown className="h-3 w-3 ml-1" strokeWidth={3} />
+              </button>
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Event
+            {showEventInfo && (
+              <th className="p-3 text-left">
+                <button
+                  onClick={() => toggleSort("eventName")}
+                  className="flex items-center font-boldonse text-sm uppercase"
+                >
+                  Event
+                  <ArrowUpDown className="h-3 w-3 ml-1" strokeWidth={3} />
+                </button>
+              </th>
+            )}
+            <th className="p-3 text-left">
+              <button
+                onClick={() => toggleSort("userName")}
+                className="flex items-center font-boldonse text-sm uppercase"
+              >
+                User
+                <ArrowUpDown className="h-3 w-3 ml-1" strokeWidth={3} />
+              </button>
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Customer
+            <th className="p-3 text-left">
+              <button
+                onClick={() => toggleSort("bookingTime")}
+                className="flex items-center font-boldonse text-sm uppercase"
+              >
+                Date
+                <ArrowUpDown className="h-3 w-3 ml-1" strokeWidth={3} />
+              </button>
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Date
+            <th className="p-3 text-left">
+              <span className="font-boldonse text-sm uppercase">Seats</span>
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Amount
+            <th className="p-3 text-left">
+              <button
+                onClick={() => toggleSort("paymentStatus")}
+                className="flex items-center font-boldonse text-sm uppercase"
+              >
+                Status
+                <ArrowUpDown className="h-3 w-3 ml-1" strokeWidth={3} />
+              </button>
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Status
-            </th>
-            <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Actions
+            <th className="p-3 text-center">
+              <span className="font-boldonse text-sm uppercase">Actions</span>
             </th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
-          {bookings.map((booking) => (
-            <tr key={booking.id} className="hover:bg-gray-50">
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        <tbody>
+          {sortedBookings.map((booking) => (
+            <tr
+              key={booking.id}
+              className="border-b-2 border-gray-200 hover:bg-gray-50"
+            >
+              <td className="p-3 font-mono text-xs font-bold">
                 {booking.id.substring(0, 8)}...
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm font-medium text-gray-900">
-                  {booking.eventName}
+              {showEventInfo && (
+                <td className="p-3">
+                  <Link
+                    href={`/events/${booking.eventId}`}
+                    className="relative inline-block group"
+                  >
+                    <div className="font-space text-sm font-bold text-blue-700 flex items-center">
+                      <span className="border-b border-blue-700">
+                        {booking.eventName || "Unknown Event"}
+                      </span>
+                      <ExternalLink className="h-3 w-3 ml-1 opacity-50 group-hover:opacity-100" />
+                    </div>
+                  </Link>
+                </td>
+              )}
+              <td className="p-3">
+                <div className="flex items-center">
+                  <span className="bg-blue-100 border-2 border-black rounded-lg p-1 mr-2 shadow-[2px_2px_0px_0px_rgba(0,0,0)]">
+                    <User className="h-3 w-3 text-blue-700" strokeWidth={3} />
+                  </span>
+                  <span className="font-space text-sm font-medium">
+                    {booking.userName || "Unknown User"}
+                  </span>
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm font-medium text-gray-900">
-                  {booking.userName}
+              <td className="p-3">
+                <div className="flex items-center">
+                  <span className="bg-purple-100 border-2 border-black rounded-lg p-1 mr-2 shadow-[2px_2px_0px_0px_rgba(0,0,0)]">
+                    <Clock
+                      className="h-3 w-3 text-purple-700"
+                      strokeWidth={3}
+                    />
+                  </span>
+                  <span className="font-space text-xs">
+                    {formatDate(booking.bookingTime)}
+                  </span>
                 </div>
-                <div className="text-sm text-gray-500">{booking.userEmail}</div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {new Date(booking.createdAt).toLocaleDateString()}
+              <td className="p-3">
+                <div className="flex flex-wrap gap-1">
+                  {booking.seats && booking.seats.length > 0 ? (
+                    booking.seats.slice(0, 3).map((seat, index) => (
+                      <span
+                        key={index}
+                        className="bg-green-100 text-xs px-2 py-0.5 border-2 border-black rounded shadow-[1px_1px_0px_0px_rgba(0,0,0)] font-bold flex items-center font-space"
+                      >
+                        <Ticket
+                          className="h-2 w-2 mr-1 text-green-700"
+                          strokeWidth={3}
+                        />
+                        {seat}
+                      </span>
+                    ))
+                  ) : (
+                    <span className="text-xs text-gray-500">No seats</span>
+                  )}
+                  {booking.seats && booking.seats.length > 3 && (
+                    <span className="bg-gray-100 text-xs px-2 py-0.5 border-2 border-black rounded shadow-[1px_1px_0px_0px_rgba(0,0,0)] font-bold font-space">
+                      +{booking.seats.length - 3}
+                    </span>
+                  )}
+                </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                ${booking.totalAmount.toFixed(2)}
+              <td className="p-3">
+                {renderPaymentStatus(booking.paymentStatus)}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <span
-                  className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                  ${
-                    booking.status === "confirmed"
-                      ? "bg-green-100 text-green-800"
-                      : booking.status === "cancelled"
-                      ? "bg-red-100 text-red-800"
-                      : "bg-yellow-100 text-yellow-800"
-                  }`}
-                >
-                  {booking.status.charAt(0).toUpperCase() +
-                    booking.status.slice(1)}
-                </span>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+              <td className="p-3 text-center">
                 <Link
-                  href={`/admin/bookings/${booking.id}`}
-                  className="text-blue-600 hover:text-blue-900"
+                  href={`/booking/${booking.id}`}
+                  className="relative inline-block group"
                 >
-                  View Details
+                  <div className="bg-purple-500 border-[2px] border-black rounded-lg py-1 px-3 text-white font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0)] transform transition-all group-hover:translate-y-[-1px] group-hover:shadow-[2px_3px_0px_0px_rgba(0,0,0)] font-boldonse text-xs uppercase flex items-center">
+                    <Eye className="h-3 w-3 mr-1" strokeWidth={3} />
+                    View
+                  </div>
                 </Link>
               </td>
             </tr>

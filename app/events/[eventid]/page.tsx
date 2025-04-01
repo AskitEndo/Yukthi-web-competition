@@ -31,8 +31,8 @@ interface EventDetailPageProps {
 export default async function EventDetailPage({
   params,
 }: EventDetailPageProps) {
-  const eventId = params.eventid;
-  const event: Event | undefined = await findEventById(eventId);
+  const eventid = params.eventid;
+  const event: Event | undefined = await findEventById(eventid);
 
   // If event is not found, display a 404 page
   if (!event) {
@@ -40,17 +40,25 @@ export default async function EventDetailPage({
   }
 
   // Prepare image URLs with fallbacks
-  const bannerUrl =
-    event.bannerImageUrl && event.bannerImageUrl.startsWith("/")
-      ? event.bannerImageUrl
-      : null; // No banner fallback for now, could add one
+  const bannerUrl = event.bannerImageUrl || null; // No banner fallback
   const posterUrl =
-    event.posterImageUrl && event.posterImageUrl.startsWith("/")
-      ? event.posterImageUrl
-      : "/images/posters/placeholder-poster.png"; // Default fallback
+    event.posterImageUrl || "/images/posters/placeholder-poster.png"; // Default fallback
 
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+    <div className="bg-white border-4 border-black rounded-xl overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0)] relative">
+      {/* Comic book style decoration */}
+      <div className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 border-2 border-black rounded-full z-10"></div>
+      <div className="absolute -bottom-2 -left-2 h-5 w-5 bg-blue-500 border-2 border-black rounded-full z-10"></div>
+
+      {/* Halftone pattern overlay */}
+      <div
+        className="absolute inset-0 opacity-5 pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(circle, rgba(0,0,0,0.3) 1px, transparent 1px)`,
+          backgroundSize: "8px 8px",
+        }}
+      ></div>
+
       {/* Optional Banner Image */}
       {bannerUrl && (
         <EventImage
@@ -60,7 +68,7 @@ export default async function EventDetailPage({
         />
       )}
 
-      <div className="p-6 md:p-8">
+      <div className="p-6 md:p-8 relative z-10">
         <div className="md:flex md:items-start md:space-x-6">
           {/* Poster Image */}
           <div className="md:w-1/3 lg:w-1/4 mb-4 md:mb-0 flex-shrink-0">
@@ -69,49 +77,73 @@ export default async function EventDetailPage({
 
           {/* Event Details */}
           <div className="md:w-2/3 lg:w-3/4">
-            <h1 className="text-3xl md:text-4xl font-bold mb-3 text-gray-800">
+            <h1 className="text-3xl md:text-4xl font-bold mb-3 text-black font-boldonse uppercase tracking-wide">
               {event.name}
             </h1>
-            <p className="text-lg text-gray-600 mb-4">
-              {formatEventDate(event.date)}
-            </p>
 
-            <div className="mb-5">
-              <h2 className="text-xl font-semibold mb-2 text-gray-700">
+            <div className="bg-blue-100 border-3 border-black rounded-lg p-3 mb-4 shadow-[4px_4px_0px_0px_rgba(0,0,0)] relative inline-block">
+              <p className="text-lg text-black font-bold font-space">
+                {formatEventDate(event.date)}
+              </p>
+              <div className="absolute -top-2 -right-2 h-4 w-4 bg-red-500 border-2 border-black rounded-full"></div>
+            </div>
+
+            <div className="mb-5 bg-yellow-100 border-3 border-black rounded-lg p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0)] relative">
+              <h2 className="text-xl font-bold mb-2 text-black font-boldonse uppercase">
                 Location
               </h2>
-              <p className="text-gray-600">{event.location}</p>
+              <p className="text-black font-medium font-space">
+                {event.location}
+              </p>
               {event.locationUrl && (
                 <a
                   href={event.locationUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline text-sm inline-block mt-1"
+                  className="mt-2 inline-block bg-green-400 border-2 border-black rounded-lg py-1 px-3 text-sm font-bold text-black shadow-[2px_2px_0px_0px_rgba(0,0,0)] transform transition-all hover:translate-y-[-2px] hover:shadow-[2px_4px_0px_0px_rgba(0,0,0)] font-boldonse"
                 >
                   View on map
                 </a>
               )}
+              <div className="absolute -top-2 -left-2 h-4 w-4 bg-green-500 border-2 border-black rounded-full"></div>
             </div>
 
-            <div className="mb-6">
-              <h2 className="text-xl font-semibold mb-2 text-gray-700">
+            <div className="mb-6 bg-white border-3 border-black rounded-lg p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0)] relative">
+              <h2 className="text-xl font-bold mb-2 text-black font-boldonse uppercase">
                 About the Event
               </h2>
               {/* Basic paragraph splitting - improve if markdown/rich text is needed later */}
-              {event.description.split("\n").map((paragraph, index) => (
-                <p key={index} className="text-gray-600 mb-3 leading-relaxed">
-                  {paragraph}
-                </p>
-              ))}
+              <div className="font-space">
+                {event.description.split("\n").map((paragraph, index) => (
+                  <p key={index} className="text-black mb-3 leading-relaxed">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+              <div className="absolute -bottom-2 -right-2 h-4 w-4 bg-blue-500 border-2 border-black rounded-full"></div>
+            </div>
+
+            {/* Price information */}
+            <div className="mb-6 flex items-center">
+              <div className="bg-red-400 border-3 border-black rounded-lg py-2 px-4 font-bold text-black shadow-[3px_3px_0px_0px_rgba(0,0,0)] inline-block transform rotate-2 font-boldonse">
+                <span className="text-xl">${event.price.toFixed(2)}</span>
+              </div>
+              <div className="ml-4 bg-purple-100 border-3 border-black rounded-lg py-2 px-4 font-bold text-black shadow-[3px_3px_0px_0px_rgba(0,0,0)] inline-block transform -rotate-1 font-space">
+                <span>{event.capacity} seats available</span>
+              </div>
             </div>
 
             {/* Booking Button */}
             <div className="mt-6 text-center md:text-left">
               <Link
                 href={`/events/${event.id}/book`}
-                className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300 shadow-md hover:shadow-lg"
+                className="relative inline-block group"
               >
-                Book Seats
+                <div className="bg-blue-500 border-[3px] border-black rounded-lg py-3 px-8 text-lg font-extrabold text-white uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0)] transform transition-all group-hover:translate-y-[-2px] group-hover:shadow-[4px_6px_0px_0px_rgba(0,0,0)] font-boldonse">
+                  Book Seats Now!
+                </div>
+                <div className="absolute -top-2 -right-2 h-4 w-4 bg-yellow-400 border-2 border-black rounded-full"></div>
+                <div className="absolute -bottom-2 -left-2 h-4 w-4 bg-red-500 border-2 border-black rounded-full"></div>
               </Link>
             </div>
           </div>
