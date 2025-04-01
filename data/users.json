@@ -1,0 +1,14 @@
+[
+  {
+    "id": "admin-001",
+    "username": "admin",
+    "password": "password",
+    "isAdmin": true
+  },
+  {
+    "id": "9e703ad5-0c44-443f-8035-81fc6428f3a7",
+    "username": "askit",
+    "password": "hihi",
+    "isAdmin": false
+  }
+]

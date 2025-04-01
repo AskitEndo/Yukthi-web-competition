@@ -1,0 +1,397 @@
+[
+  {
+    "id": "sample-event-1",
+    "name": "Sample Theatre Play",
+    "description": "A fantastic play to demonstrate booking.",
+    "date": "2024-12-10T20:00:00Z",
+    "location": "Local Community Theatre, 123 Fake St",
+    "locationUrl": "https://maps.google.com",
+    "posterImageUrl": "/images/posters/placeholder-poster.png",
+    "bannerImageUrl": "/images/banners/placeholder-banner.png",
+    "rows": 5,
+    "cols": 8,
+    "seats": []
+  },
+  {
+    "id": "d6aa8bd6-b887-4cdd-8ac5-e176d9f33f1f",
+    "name": "XYZ",
+    "description": "hohohohoho",
+    "date": "2025-04-17T02:58:00.000Z",
+    "location": "BANGALORE URBAN",
+    "locationUrl": "https://www.google.com/maps/place/Brindavan+Group+of+Institutions/@13.1247548,77.6178067,807m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3bae191796b657e1:0xe1410eafb7046daf!8m2!3d13.1247496!4d77.6203816!16s%2Fm%2F0zn2hpx!5m1!1e2?entry=tts&g_ep=EgoyMDI1MDMyNS4xIPu8ASoASAFQAw%3D%3D&skid=b4ed1fe7-29e8-4bb3-b493-1f21c88b3f38",
+    "posterImageUrl": "https://placehold.co/920x180/png",
+    "bannerImageUrl": "https://placehold.co/1920x1080/png",
+    "rows": 23,
+    "cols": 2,
+    "seats": [
+      [
+        {
+          "id": "R1C1",
+          "row": 1,
+          "col": 1,
+          "isBooked": true,
+          "userId": "9e703ad5-0c44-443f-8035-81fc6428f3a7"
+        },
+        {
+          "id": "R1C2",
+          "row": 1,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R2C1",
+          "row": 2,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R2C2",
+          "row": 2,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R3C1",
+          "row": 3,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R3C2",
+          "row": 3,
+          "col": 2,
+          "isBooked": true,
+          "userId": "9e703ad5-0c44-443f-8035-81fc6428f3a7"
+        }
+      ],
+      [
+        {
+          "id": "R4C1",
+          "row": 4,
+          "col": 1,
+          "isBooked": true,
+          "userId": "9e703ad5-0c44-443f-8035-81fc6428f3a7"
+        },
+        {
+          "id": "R4C2",
+          "row": 4,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R5C1",
+          "row": 5,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R5C2",
+          "row": 5,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R6C1",
+          "row": 6,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R6C2",
+          "row": 6,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R7C1",
+          "row": 7,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R7C2",
+          "row": 7,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R8C1",
+          "row": 8,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R8C2",
+          "row": 8,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R9C1",
+          "row": 9,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R9C2",
+          "row": 9,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R10C1",
+          "row": 10,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R10C2",
+          "row": 10,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R11C1",
+          "row": 11,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R11C2",
+          "row": 11,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R12C1",
+          "row": 12,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R12C2",
+          "row": 12,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R13C1",
+          "row": 13,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R13C2",
+          "row": 13,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R14C1",
+          "row": 14,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R14C2",
+          "row": 14,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R15C1",
+          "row": 15,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R15C2",
+          "row": 15,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R16C1",
+          "row": 16,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R16C2",
+          "row": 16,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R17C1",
+          "row": 17,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R17C2",
+          "row": 17,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R18C1",
+          "row": 18,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R18C2",
+          "row": 18,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R19C1",
+          "row": 19,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R19C2",
+          "row": 19,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R20C1",
+          "row": 20,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R20C2",
+          "row": 20,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R21C1",
+          "row": 21,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R21C2",
+          "row": 21,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R22C1",
+          "row": 22,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R22C2",
+          "row": 22,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ],
+      [
+        {
+          "id": "R23C1",
+          "row": 23,
+          "col": 1,
+          "isBooked": false,
+          "userId": null
+        },
+        {
+          "id": "R23C2",
+          "row": 23,
+          "col": 2,
+          "isBooked": false,
+          "userId": null
+        }
+      ]
+    ]
+  }
+]

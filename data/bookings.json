@@ -1,0 +1,14 @@
+[
+  {
+    "id": "f8d6a9f8-8972-4945-9708-4e85ddd28146",
+    "eventId": "d6aa8bd6-b887-4cdd-8ac5-e176d9f33f1f",
+    "userId": "9e703ad5-0c44-443f-8035-81fc6428f3a7",
+    "seats": [
+      "R1C1",
+      "R3C2",
+      "R4C1"
+    ],
+    "bookingTime": "2025-04-01T12:51:05.313Z",
+    "paymentStatus": "paid"
+  }
+]
