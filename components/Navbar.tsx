@@ -61,7 +61,7 @@ export default function Navbar() {
             <div className="relative">
               <div className="bg-yellow-300 border-4 border-black py-1 px-4 rounded-xl transform translate-y-0 transition-transform shadow-[5px_5px_0px_0px_rgba(0,0,0)] group-hover:translate-y-[-2px]">
                 <span className="text-2xl font-extrabold text-black font-boldonse">
-                  SeeVent!
+                  SEEVENT!
                 </span>
               </div>
               <div className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 border-2 border-black rounded-full"></div>
@@ -74,12 +74,7 @@ export default function Navbar() {
               <div className="relative">
                 <div className="bg-white border-3 border-black rounded-lg px-4 py-2 shadow-[4px_4px_0px_0px_rgba(0,0,0)]">
                   <div className="h-4 w-4 rounded-full bg-red-500 animate-ping mr-2 inline-block"></div>
-                  <span
-                    className="font-bold"
-                    style={{ fontFamily: "Comic Sans MS, cursive, sans-serif" }}
-                  >
-                    LOADING...
-                  </span>
+                  <span className="font-bold">LOADING...</span>
                 </div>
                 <div className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-300 border-2 border-black rounded-full animate-pulse"></div>
               </div>

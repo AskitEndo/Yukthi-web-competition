@@ -12,7 +12,7 @@ import {
   CalendarDays,
   Calendar,
   User,
-  DollarSign,
+  IndianRupee,
   ArrowRight,
   AlertTriangle,
   Home,
@@ -114,7 +114,7 @@ export default function BookingsPage() {
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-10">
         <div className="relative">
-          <h1 className="text-3xl font-extrabold text-black uppercase tracking-wide font-boldonse inline-block relative z-10">
+          <h1 className="text-3xl font-extrabold text-white uppercase tracking-wide font-boldonse inline-block relative z-10">
             MY BOOKINGS
           </h1>
           <div className="absolute -bottom-2 left-0 h-3 w-full bg-yellow-400 -z-0"></div>
@@ -145,7 +145,7 @@ export default function BookingsPage() {
             <Ticket className="h-8 w-8 text-blue-600" strokeWidth={3} />
           </div>
 
-          <p className="text-xl text-black font-bold font-boldonse relative z-10 uppercase mb-4">
+          <p className="text-xl text-white font-bold font-boldonse relative z-10 uppercase mb-4">
             You haven't made any bookings yet!
           </p>
 
@@ -229,7 +229,7 @@ export default function BookingsPage() {
                               : "bg-yellow-400 text-black"
                           }`}
                       >
-                        <DollarSign className="h-4 w-4 mr-1" strokeWidth={3} />
+                        <IndianRupee className="h-4 w-4 mr-1" strokeWidth={3} />
                         {booking.paymentStatus === "paid"
                           ? "PAID"
                           : "PAY AT EVENT"}
@@ -249,7 +249,7 @@ export default function BookingsPage() {
                         {booking.seats.map((seat) => (
                           <span
                             key={seat}
-                            className="bg-white border-2 border-black px-2 py-1 rounded shadow-[1px_1px_0px_0px_rgba(0,0,0)] text-sm font-bold font-space"
+                            className="bg-white border-2 text-blue-600 border-black px-2 py-1 rounded shadow-[1px_1px_0px_0px_rgba(0,0,0)] text-sm font-bold font-space"
                           >
                             {seat}
                           </span>

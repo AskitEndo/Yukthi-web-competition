@@ -11,12 +11,13 @@ const JWT_SECRET = new TextEncoder().encode(
 );
 const COOKIE_NAME = "session";
 
-// Helper function to verify JWT (can be extracted to a shared util)
+// Helper function to verify JWT
 async function verifyAuthentication(request: Request): Promise<boolean> {
-  const cookieStore = await cookies();
-  const tokenCookie = cookieStore.get(COOKIE_NAME);
-  if (!tokenCookie) return false;
   try {
+    const cookieStore = await cookies();
+    const tokenCookie = cookieStore.get(COOKIE_NAME);
+    if (!tokenCookie) return false;
+
     await jwtVerify(tokenCookie.value, JWT_SECRET);
     return true; // Token exists and is valid
   } catch {
@@ -25,21 +26,19 @@ async function verifyAuthentication(request: Request): Promise<boolean> {
 }
 
 export async function GET(
-  request: Request, // Need request object to potentially check auth later
+  request: Request,
   { params }: { params: { eventId: string } }
 ) {
   const eventId = params.eventId;
 
-  // --- Authentication Check ---
-  // Ensure only logged-in users can fetch detailed event data for booking
-  const isAuthenticated = await verifyAuthentication(request);
-  if (!isAuthenticated) {
-    return NextResponse.json(
-      { success: false, message: "Authentication required." },
-      { status: 401 }
-    );
-  }
-  // ---------------------------
+  // Skip auth check for public event data
+  // const isAuthenticated = await verifyAuthentication(request);
+  // if (!isAuthenticated) {
+  //   return NextResponse.json(
+  //     { success: false, message: "Authentication required." },
+  //     { status: 401 }
+  //   );
+  // }
 
   if (!eventId) {
     return NextResponse.json(

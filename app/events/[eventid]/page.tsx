@@ -25,14 +25,14 @@ function formatEventDate(dateString: string): string {
 
 // Define props structure including params
 interface EventDetailPageProps {
-  params: { eventid: string };
+  params: { eventId: string };
 }
 
 export default async function EventDetailPage({
   params,
 }: EventDetailPageProps) {
-  const eventid = params.eventid;
-  const event: Event | undefined = await findEventById(eventid);
+  const eventId = params.eventId;
+  const event: Event | undefined = await findEventById(eventId);
 
   // If event is not found, display a 404 page
   if (!event) {
@@ -124,12 +124,14 @@ export default async function EventDetailPage({
             </div>
 
             {/* Price information */}
-            <div className="mb-6 flex items-center">
-              <div className="bg-red-400 border-3 border-black rounded-lg py-2 px-4 font-bold text-black shadow-[3px_3px_0px_0px_rgba(0,0,0)] inline-block transform rotate-2 font-boldonse">
-                <span className="text-xl">${event.price.toFixed(2)}</span>
+            <div className="mb-6 flex flex-wrap gap-4 items-center">
+              <div className="bg-red-400 border-2 border-black rounded-lg py-2 px-4 font-bold text-black shadow-[3px_3px_0px_0px_rgba(0,0,0)] inline-block transform rotate-2 font-boldonse">
+                <span className="text-xl">
+                  ₹{event.price ? event.price.toFixed(2) : "5.00"}
+                </span>
               </div>
-              <div className="ml-4 bg-purple-100 border-3 border-black rounded-lg py-2 px-4 font-bold text-black shadow-[3px_3px_0px_0px_rgba(0,0,0)] inline-block transform -rotate-1 font-space">
-                <span>{event.capacity} seats available</span>
+              <div className="bg-purple-100 border-2 border-black rounded-lg py-2 px-4 font-bold text-black shadow-[3px_3px_0px_0px_rgba(0,0,0)] inline-block transform -rotate-1 font-space">
+                <span>{event.capacity || 0} seats available</span>
               </div>
             </div>
 

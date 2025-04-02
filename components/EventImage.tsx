@@ -97,7 +97,9 @@ export default function EventImage({
           <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-r from-blue-400 to-purple-500">
             <div className="text-white font-boldonse flex flex-col items-center">
               <ImageIcon className="h-8 w-8 mb-2" strokeWidth={2} />
-              <span className="animate-pulse">LOADING...</span>
+              <span className="animate-pulse text-emerald-400 ">
+                LOADING...
+              </span>
             </div>
           </div>
         )}

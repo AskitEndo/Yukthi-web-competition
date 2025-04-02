@@ -93,11 +93,13 @@ export default function LoadingSpinner({
 
         {/* Loading text */}
         <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-white border-[2px] border-black rounded-lg px-2 py-0.5 shadow-[2px_2px_0px_0px_rgba(0,0,0)]">
-          <span className="text-xs font-bold font-space">LOADING...</span>
+          <span className="text-xs font-extrabold font-space text-emerald-700">
+            LOADING...
+          </span>
         </div>
 
         {/* Accessibility text */}
-        <span className="sr-only">Loading...</span>
+        <span className="sr-only tex text-emerald-500">Loading...</span>
       </div>
 
       {/* CSS Animation for orbiting element */}

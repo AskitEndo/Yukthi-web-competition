@@ -157,7 +157,7 @@ export default async function HomePage() {
               <CalendarDays className="h-4 w-4 mr-2" strokeWidth={3} />
               Latest Events
             </div>
-            <h2 className="text-3xl font-extrabold text-black uppercase tracking-wider font-boldonse">
+            <h2 className="text-3xl font-extrabold text-white uppercase tracking-wider font-boldonse">
               Trending Now
             </h2>
           </div>
@@ -202,16 +202,16 @@ export default async function HomePage() {
       </div>
 
       {/* Comic book style footer decoration */}
-      <div className="w-full h-12 bg-black relative overflow-hidden">
+      {/* <div className="w-full h-12 bg-black relative overflow-hidden">
         <div
-          className="absolute top-0 left-0 right-0 h-6"
-          style={{
-            clipPath:
-              "polygon(0% 0%, 4% 100%, 8% 0%, 12% 100%, 16% 0%, 20% 100%, 24% 0%, 28% 100%, 32% 0%, 36% 100%, 40% 0%, 44% 100%, 48% 0%, 52% 100%, 56% 0%, 60% 100%, 64% 0%, 68% 100%, 72% 0%, 76% 100%, 80% 0%, 84% 100%, 88% 0%, 92% 100%, 96% 0%, 100% 100%, 100% 0%)",
-            background: "white",
-          }}
+        // className="absolute top-0 left-0 right-0 h-6"
+        // style={{
+        //   clipPath:
+        //     "polygon(0% 0%, 4% 100%, 8% 0%, 12% 100%, 16% 0%, 20% 100%, 24% 0%, 28% 100%, 32% 0%, 36% 100%, 40% 0%, 44% 100%, 48% 0%, 52% 100%, 56% 0%, 60% 100%, 64% 0%, 68% 100%, 72% 0%, 76% 100%, 80% 0%, 84% 100%, 88% 0%, 92% 100%, 96% 0%, 100% 100%, 100% 0%)",
+        //   background: "white",
+        // }}
         ></div>
-      </div>
+      </div> */}
     </div>
   );
 }

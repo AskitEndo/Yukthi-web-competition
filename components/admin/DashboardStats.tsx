@@ -1,4 +1,4 @@
-import { Calendar, ShoppingBag, Clock, DollarSign, Zap } from "lucide-react";
+import { Calendar, ShoppingBag, Clock, IndianRupee, Zap } from "lucide-react";
 
 interface DashboardStatsProps {
   stats: {
@@ -174,7 +174,7 @@ export default function DashboardStats({ stats }: DashboardStatsProps) {
             </div>
             <div className="relative">
               <div className="bg-yellow-100 p-3 rounded-lg border-3 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0)]">
-                <DollarSign
+                <IndianRupee
                   className="h-6 w-6 text-yellow-700"
                   strokeWidth={3}
                 />

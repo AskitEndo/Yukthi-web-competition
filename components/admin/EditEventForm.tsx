@@ -7,7 +7,7 @@ import {
   MapPin,
   Upload,
   Users,
-  DollarSign,
+  IndianRupee,
   Tag,
   Eye,
   ArrowLeft,
@@ -418,7 +418,7 @@ export default function EditEventForm({
                       htmlFor="price"
                       className="block text-sm font-bold text-black mb-1 uppercase font-boldonse flex items-center"
                     >
-                      <DollarSign className="h-4 w-4 mr-1" strokeWidth={3} />
+                      <IndianRupee className="h-4 w-4 mr-1" strokeWidth={3} />
                       Price ($) <span className="text-red-500">*</span>
                     </label>
                     <input

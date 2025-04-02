@@ -104,7 +104,7 @@ export default function EventCard({ event }: any) {
             <div className="relative">
               <div className="bg-yellow-300 text-black font-extrabold px-3 py-1 rounded-lg border-[3px] border-black transform rotate-3 shadow-[2px_2px_0px_0px_rgba(0,0,0)]">
                 <Ticket className="h-3 w-3 mr-1 inline-block" strokeWidth={3} />
-                $5 per seat
+                ₹5 per seat
               </div>
               <div className="absolute -top-1 -left-1 h-3 w-3 bg-blue-500 border-2 border-black rounded-full"></div>
             </div>

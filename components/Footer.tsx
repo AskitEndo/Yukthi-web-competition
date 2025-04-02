@@ -114,7 +114,7 @@ export default function Footer() {
             <div>
               <div className="bg-blue-400 border-4 border-black rounded-xl p-4 shadow-[5px_5px_0px_0px_rgba(0,0,0)] transform -rotate-1 relative">
                 <div className="absolute -top-2 -left-2 w-6 h-6 bg-yellow-400 border-[3px] border-black rounded-full"></div>
-                <h3 className="text-xl font-extrabold text-black mb-4 uppercase tracking-wider font-boldonse">
+                <h3 className="text-xl font-extrabold text-white mb-4 uppercase tracking-wider font-boldonse">
                   Quick Links
                 </h3>
                 <ul className="space-y-3 font-boldonse">
