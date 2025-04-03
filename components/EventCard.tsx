@@ -14,10 +14,12 @@ import {
   Zap,
 } from "lucide-react";
 import { formatDate } from "@/lib/date-utils";
+import { useState } from "react";
 
 export default function EventCard({ event }: any) {
   const router = useRouter();
   const { user } = useAuth();
+  const [imageError, setImageError] = useState(false);
 
   const handleBooking = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -68,14 +70,16 @@ export default function EventCard({ event }: any) {
               backgroundSize: "4px 4px",
             }}
           ></div>
-          {event.image ? (
+          {/* Try to use poster image first, then regular image, then fallback */}
+          {!imageError && (event.posterImageUrl || event.image) ? (
             <Image
-              src={event.image}
+              src={event.posterImageUrl || event.image}
               alt={event.name}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover"
               priority
+              onError={() => setImageError(true)}
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-r from-red-500 to-blue-500 flex items-center justify-center">
@@ -104,7 +108,7 @@ export default function EventCard({ event }: any) {
             <div className="relative">
               <div className="bg-yellow-300 text-black font-extrabold px-3 py-1 rounded-lg border-[3px] border-black transform rotate-3 shadow-[2px_2px_0px_0px_rgba(0,0,0)]">
                 <Ticket className="h-3 w-3 mr-1 inline-block" strokeWidth={3} />
-                ₹5 per seat
+                ₹{event.price ? event.price.toFixed(2) : "5"} per seat
               </div>
               <div className="absolute -top-1 -left-1 h-3 w-3 bg-blue-500 border-2 border-black rounded-full"></div>
             </div>
@@ -126,7 +130,9 @@ export default function EventCard({ event }: any) {
                     className="h-3 w-3 mr-1 inline-block"
                     strokeWidth={3}
                   />
-                  <span className="relative z-10">{event.location}</span>
+                  <span className="relative z-10">
+                    {event.location || "TBA"}
+                  </span>
                 </div>
                 <div className="absolute -right-2 top-1/2 w-3 h-3 bg-blue-400 border-r-2 border-b-2 border-black transform rotate-45 -translate-y-1/2"></div>
               </div>
@@ -143,7 +149,7 @@ export default function EventCard({ event }: any) {
                     className="h-3 w-3 mr-1 inline-block"
                     strokeWidth={3}
                   />
-                  <span className="relative z-10">{event.time}</span>
+                  <span className="relative z-10">{event.time || "TBA"}</span>
                 </div>
                 <div className="absolute -left-2 top-1/2 w-3 h-3 bg-green-400 border-l-2 border-t-2 border-black transform rotate-45 -translate-y-1/2"></div>
               </div>
@@ -161,7 +167,7 @@ export default function EventCard({ event }: any) {
                     strokeWidth={3}
                   />
                   <span className="relative z-10">
-                    {event.availableSeats} seats left
+                    {event.availableSeats || event.capacity || 0} seats left
                   </span>
                 </div>
                 <div className="absolute -right-2 top-1/2 w-3 h-3 bg-red-400 border-r-2 border-b-2 border-black transform rotate-45 -translate-y-1/2"></div>

@@ -18,7 +18,7 @@ const spaceGrotesk = Space_Grotesk({
 // Boldonse isn't available in next/font/google, so we'll import it through CSS
 
 export const metadata: Metadata = {
-  title: "SeeVent - Event Booking Platform",
+  title: "SEEVENT - Event Booking Platform",
   description: "Book your tickets for exciting events happening around you.",
 };
 

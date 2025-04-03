@@ -60,7 +60,7 @@ export default function Footer() {
                 <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 border-[3px] border-black rounded-full"></div>
                 <h3 className="text-xl font-extrabold text-black mb-4 uppercase tracking-wider flex items-center font-boldonse">
                   <Zap className="mr-2 h-5 w-5" strokeWidth={3} />
-                  About SeeVent
+                  About SEEVENT
                 </h3>
                 <p className="text-black font-bold mb-4 font-space">
                   Discover amazing events happening around you. Book tickets
@@ -188,7 +188,7 @@ export default function Footer() {
 
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-white text-sm font-bold font-boldonse">
-                © {new Date().getFullYear()} SeeVent. All rights reserved.
+                © {new Date().getFullYear()} SEEVENT. All rights reserved.
               </p>
               <p className="text-white text-sm font-bold flex items-center mt-2 md:mt-0 font-boldonse">
                 Made with

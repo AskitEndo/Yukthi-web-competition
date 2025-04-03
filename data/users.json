@@ -10,5 +10,17 @@
     "username": "askit",
     "password": "hihi",
     "isAdmin": false
+  },
+  {
+    "id": "498eb865-6753-4590-9966-3aa9f465190d",
+    "username": "snehaabcd",
+    "password": "ABCD",
+    "isAdmin": false
+  },
+  {
+    "id": "8425fcf0-8fbd-4ecc-920b-c4fc44444175",
+    "username": "SNEHA",
+    "password": "ABCD",
+    "isAdmin": false
   }
 ]
